@@ -89,7 +89,7 @@ if/[diskcount == 0]
 	_import
 	reboot
 endif
-// Try to boot from every disk (following boot order)
+// Try to boot from every disk
 // If this, fails, show an error message
 set/"i",0
 while/[i < diskcount]
