@@ -1,5 +1,3 @@
-// Do not change the clear line!
-// The BIOS uses it to save settings.
 clear
 // BIOS version
 set/"ver","0.0.1"
