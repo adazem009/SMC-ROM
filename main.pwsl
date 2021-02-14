@@ -1,6 +1,6 @@
 clear
 // BIOS version
-set/"ver","0.0.1"
+set/"ver","0.0.2"
 // Functions
 define/"_import"
 {
@@ -96,16 +96,9 @@ while/[i < diskcount]
 	// Boot from disk
 	calc/"i=i+1"
 	// Read MBR
-	warp
-		set/"i2",0/"mbr",""
-		repeat/4096
-			calc/"i2=i2+1"
-			readdisk/i,i2/"byte"
-			set/"mbr",mbr,byte
-		endloop
-	endwarp
+	cpdisk/i/"mbr"
 	// Execute MBR
-	run/mbr,"wait"/i
+	run/mbr,"wait",1,4096/i
 endloop
 // Boot failure
 warp
