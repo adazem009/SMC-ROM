@@ -1,6 +1,6 @@
 clear
 // BIOS version
-set/"ver","0.0.2"
+set/"ver","0.0.3-rc"
 // Functions
 define/"_import"
 {
@@ -103,8 +103,11 @@ endloop
 // Boot failure
 warp
 	clear
-	print/"Error: Failed to boot.",\n,\n
-	print/"Please check the PC code you used.",\n
+	print>
+		"Error: Failed to boot."
+		""
+		"Please check the PC code you used."
+	<print
 endwarp
 wait/10
 shutdown
