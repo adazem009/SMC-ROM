@@ -97,6 +97,8 @@ while/[i < diskcount]
 	calc/"i=i+1"
 	// Read MBR
 	cpdisk/i/"mbr"
+	// Leave BIOS-space
+	leavebios
 	// Execute MBR
 	run/mbr,"wait",1,4096/i
 endloop
