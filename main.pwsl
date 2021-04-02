@@ -101,8 +101,11 @@ while/[i < diskcount]
 	leavebios
 	// Execute MBR
 	run/mbr,"bg",1,4096/i
+	wait/1
+	if/[%ps != 0]
+		set/"i",diskcount
+	endif
 endloop
-wait/1
 // Wait until all processes stop
 while/[%ps > 0]
 	wait/10
