@@ -100,7 +100,12 @@ while/[i < diskcount]
 	// Leave BIOS-space
 	leavebios
 	// Execute MBR
-	run/mbr,"wait",1,4096/i
+	run/mbr,"bg",1,4096/i
+endloop
+wait/1
+// Wait until all processes stop
+while/[%ps > 0]
+	wait/10
 endloop
 // Boot failure
 warp
