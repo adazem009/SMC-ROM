@@ -1,6 +1,6 @@
 clear
 // BIOS version
-set/"ver","0.1.0-rc"
+set/"ver","0.1.0"
 // Functions
 define/"_import"
 {
