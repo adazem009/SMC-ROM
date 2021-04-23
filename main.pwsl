@@ -102,12 +102,12 @@ while/[i < diskcount]
 	// Execute MBR
 	run/mbr,"bg",1,4096/i
 	wait/1
-	if/[%ps != 0]
+	if/[%ps != 1]
 		set/"i",diskcount
 	endif
 endloop
 // Wait until all processes stop
-while/[%ps > 0]
+while/[%ps > 1]
 	wait/10
 endloop
 // Boot failure
