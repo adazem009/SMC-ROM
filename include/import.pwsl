@@ -20,7 +20,6 @@ linkdef/"_import","imp"
 	// _import
 	// (no arguments)
 	// Setup screen
-	clear
 	bgcolor/"000000000"
 	// Ask for PC code
 	read/"Paste your PC code: ","code"
