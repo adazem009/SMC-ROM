@@ -26,8 +26,6 @@ bgcolor/"000000000"
 showlogo
 enabletext
 print/"Hold S to enter setup...",\n
-// Read BIOS settings
-getitem/"arg_bin",1/"f"
 wait/0.5
 getkey/"keys"
 getitem/"keys",1/"key"
