@@ -1,0 +1,64 @@
+// SMC Computer BIOS
+//
+//    Copyright (C) 2021  adazem009
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+linkdef/"_setup_menu_render"
+{
+	// _setup_menu_render
+	// (no arguments)
+	warp
+		clear
+		set/"r",1
+		// Header
+		print/"SMC Computer stock BIOS",\n
+		print/"Version: ",ver,\n,\n
+		// Menu
+		print/"Choose a number:",\n
+		set/"si",0
+		repeat/menulen
+			calc/"si=si+1"
+			getitem/"menu",si/"it"
+			print/si,") ",it,\n
+		endloop
+		// Footer
+		print/"*dangerous",\n
+	endwarp
+}
+linkdef/"_setup_menu"
+{
+	// _setup_menu
+	// (no arguments)
+	hidelogo
+	setlist/"menu"/"Continue boot","Reboot","Load PC code*"
+	getlistlength/"menu"/"menulen"
+	set/"exit",0
+	while/[exit == 0]
+		// Render menu
+		_setup_menu_render
+		read/"","sel"
+		if/[sel == 1]
+			set/"exit",1
+		else
+			if/[sel == 2]
+				reboot
+			else
+				if/[sel == 3]
+					_import
+				endif
+			endif
+		endif
+	endloop
+}

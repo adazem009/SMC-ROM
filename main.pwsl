@@ -17,71 +17,11 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
+include/"import.pwsl"
+include/"menu.pwsl"
 clear
 // BIOS version
 set/"ver","0.1.1"
-// Functions
-define/"_import"
-{
-	// _import
-	// (no arguments)
-	// Setup screen
-	clear
-	bgcolor/"000000000"
-	// Ask for PC code
-	read/"Paste your PC code: ","code"
-	// Load the PC code
-	print/"Importing...",\n
-	loadcode/code
-	print/"Done!",\n
-}
-define/"_setup_menu_render"
-{
-	// _setup_menu_render
-	// (no arguments)
-	warp
-		clear
-		set/"r",1
-		// Header
-		print/"SMC Computer stock BIOS",\n
-		print/"Version: ",ver,\n,\n
-		// Menu
-		print/"Choose a number:",\n
-		set/"si",0
-		repeat/menulen
-			calc/"si=si+1"
-			getitem/"menu",si/"it"
-			print/si,") ",it,\n
-		endloop
-		// Footer
-		print/"*dangerous",\n
-	endwarp
-}
-define/"_setup_menu"
-{
-	// _setup_menu
-	// (no arguments)
-	hidelogo
-	setlist/"menu"/"Continue boot","Reboot","Load PC code*"
-	getlistlength/"menu"/"menulen"
-	set/"exit",0
-	while/[exit == 0]
-		// Render menu
-		_setup_menu_render
-		read/"","sel"
-		if/[sel == 1]
-			set/"exit",1
-		else
-			if/[sel == 2]
-				reboot
-			else
-				if/[sel == 3]
-					_import
-				endif
-			endif
-		endif
-	endloop
-}
 bgcolor/"000000000"
 showlogo
 enabletext
