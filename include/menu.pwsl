@@ -15,7 +15,7 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-linkdef/"_setup_menu_render"
+linkdef/"_setup_menu_render","smr"
 {
 	// _setup_menu_render
 	// (no arguments)
@@ -37,7 +37,7 @@ linkdef/"_setup_menu_render"
 		print/"*dangerous",\n
 	endwarp
 }
-linkdef/"_setup_menu"
+linkdef/"_setup_menu","sm"
 {
 	// _setup_menu
 	// (no arguments)
