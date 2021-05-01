@@ -28,3 +28,18 @@ linkdef/"_import","imp"
 	loadcode/code
 	print/"Done!",\n
 }
+linkdef/"_boot_media","impm"
+{
+	// _boot_media
+	// (no arguments)
+	// Ask for media code/image
+	read/"Please paste a bootable code: ","code"
+	print/"Booting from the code...",\n
+	// Insert media
+	insmedia/code
+	// Leave BIOS-space
+	leavebios
+	// Execute MBR
+	run/code,"bg",1,4096/0
+	wait/1
+}

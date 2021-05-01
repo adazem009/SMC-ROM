@@ -43,26 +43,27 @@ getlistlength/"disks"/"diskcount"
 // Ask for PC code if no disks are found
 if/[diskcount == 0]
 	print/"Error: No disks found.",\n
-	_import
-	reboot
+	print/"Trying to get a bootable code...",\n,\n
+	_boot_media
+else
+	// Try to boot from every disk
+	// If this, fails, show an error message
+	set/"i",0
+	while/[i < diskcount]
+		// Boot from disk
+		calc/"i=i+1"
+		// Read MBR
+		cpdisk/i/"mbr"
+		// Leave BIOS-space
+		leavebios
+		// Execute MBR
+		run/mbr,"bg",1,4096/i
+		wait/1
+		if/[%ps != 1]
+			set/"i",diskcount
+		endif
+	endloop
 endif
-// Try to boot from every disk
-// If this, fails, show an error message
-set/"i",0
-while/[i < diskcount]
-	// Boot from disk
-	calc/"i=i+1"
-	// Read MBR
-	cpdisk/i/"mbr"
-	// Leave BIOS-space
-	leavebios
-	// Execute MBR
-	run/mbr,"bg",1,4096/i
-	wait/1
-	if/[%ps != 1]
-		set/"i",diskcount
-	endif
-endloop
 // Wait until all processes stop
 while/[%ps > 1]
 	wait/10
@@ -73,7 +74,7 @@ warp
 	print>
 		"Error: Failed to boot."
 		""
-		"Please check the PC code you used."
+		"Please check the PC/media code you used."
 	<print
 endwarp
 wait/10
