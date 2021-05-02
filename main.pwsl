@@ -21,7 +21,7 @@ include/"import.pwsl"
 include/"menu.pwsl"
 clear
 // BIOS version
-set/"ver","0.1.2"
+set/"ver","0.2.0"
 bgcolor/"000000000"
 showlogo
 enabletext
