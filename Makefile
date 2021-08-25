@@ -1,4 +1,5 @@
 # OS dependencies
+$(info Checking dependencies...)
 ifeq ($(shell which git),)
     $(error "git not found in PATH, make sure it's installed")
 endif
@@ -8,9 +9,12 @@ endif
 
 # Targets
 main: ./pwc
-	./pwc main.pwsl -o image --string
+	$(info Building BIOS...)
+	@./pwc main.pwsl -o image --string
+	$(info Output: ./image)
 
 ./pwc:
-	git clone https://github.com/adazem009/PowerSlash compiler
-	gcc compiler/pwc.c -o pwc
-	rm -rf compiler
+	$(info Getting PowerSlash compiler...)
+	@git clone https://github.com/adazem009/PowerSlash compiler
+	@gcc compiler/pwc.c -o pwc
+	@rm -rf compiler
