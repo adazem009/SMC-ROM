@@ -7,13 +7,12 @@ SMC Computer BIOS source code
 git clone https://github.com/adazem009/SMC-ROM
 cd SMC-ROM
 ```
-2. Download dependencies:
+2. Make sure `git` and `gcc` are installed (Debian, Ubuntu):
 ```
-chmod +x sync.sh
-./sync.sh
+sudo apt-get install git gcc
 ```
 3. Build:
 ```
-./build.sh
+make
 ```
 The BIOS image will be saved in the `image` file. You can copy it and paste it to the `#BIOS` variable in SMC Computer.
